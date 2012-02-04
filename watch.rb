@@ -6,7 +6,9 @@ require 'net/sftp'
 shots_dir = "#{ENV["HOME"]}/inbox/_screenshots"
 trans_dir = shots_dir+"/t"
 
-remote_dir = "<remote dir>"
+remote_dir  = "/var/www/cyanoryx.com/public_html/files/s"
+remote_user = 'adam'
+remote_addr = 'cyanoryx.com'
 
 Dir.chdir(shots_dir)
 
@@ -16,7 +18,7 @@ images.each do |file|
   file_loc = "#{trans_dir}/#{file}"
 
   begin 
-    Net::SFTP.start('cyanoryx.com', 'adam') do |sftp|
+    Net::SFTP.start(remote_addr, remote_user) do |sftp|
       sftp.upload!(file, "#{remote_dir}/#{file}")
     end
 

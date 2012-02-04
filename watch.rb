@@ -12,7 +12,7 @@ remote_addr = 'cyanoryx.com'
 
 Dir.chdir(shots_dir)
 
-images = Dir.glob('*.jpg')
+images = Dir.glob('*.{jpg,png,gif}', File::FNM_CASEFOLD)
 
 images.each do |file|
   file_loc = "#{trans_dir}/#{file}"
